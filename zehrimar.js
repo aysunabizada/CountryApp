@@ -56,7 +56,6 @@ fetch(
     data = resJson;
     randomla();
     showBoxs();
-
     console.log(data);
   });
 
@@ -119,23 +118,20 @@ function input() {
   let kod = "";
   data
     .filter((item) =>
-      item.name.toLowerCase().startsWith(inputaxtar.value.toLowerCase())
-    )
+      item.name.toLowerCase().startsWith(inputaxtar.value.toLowerCase()))
     .map((item) => {
-      kod += `
-                <a href="#"> 
-                    <div class="box">
-                        <div class="box-img">
-                            <img src="${item.flags.png}" alt="">
-                        </div>
-                        <div class="box-text">
-                            <h2>${item.name}</h2>
-                            <p>${item.capital}</p>
-                            <p>Mei ex aliquid eleifend forensibus, quo ad dicta apeirian neglegentur, ex has tantas percipit perfecto. At per tempor albucius perfecto, ei probatus consulatu patrioque mea, ei vocent delicata indoctum pri.</p>
-                        </div>
-                    </div>
-                </a>`;
-    });
+      kod += `      
+              <div class="box">
+                <div class="box-img">
+                    <img src="${item.flags.png}" alt="">
+                </div>
+                <div class="box-text">
+                    <h2>${item.name}</h2>
+                    <p>${item.capital}</p>
+                    <p>Mei ex aliquid eleifend forensibus, quo ad dicta apeirian neglegentur, ex has tantas percipit perfecto.</p>
+                </div>
+              </div>`;
+    }); console.log("xarabam men");
   boxs.innerHTML = kod;
 }
 
