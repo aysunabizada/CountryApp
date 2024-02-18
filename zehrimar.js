@@ -90,9 +90,10 @@ function showBoxs() {
   let cardCodes = "";
   data.slice(0, say).map((item) => {
     cardCodes += ` 
-                    <div class="box">
+                    <div class="box" onclick="OpenBox('${item.alpha3Code
+                    }')">
                         <div class="box-img">
-                            <img src="${item.flags.png}" alt="">
+                          <img src="${item.flags.png}" alt="">
                         </div>
                         <div class="box-text">
                             <h2>${item.name}</h2>
@@ -100,6 +101,7 @@ function showBoxs() {
                             <p>Mei ex aliquid eleifend forensibus, quo ad dicta apeirian neglegentur, ex has tantas percipit perfecto.</p>
                         </div>
                     </div>
+                  
                 `;
   });
   boxs.innerHTML = cardCodes;
@@ -131,11 +133,42 @@ function input() {
                     <p>Mei ex aliquid eleifend forensibus, quo ad dicta apeirian neglegentur, ex has tantas percipit perfecto.</p>
                 </div>
               </div>`;
-    }); console.log("xarabam men");
+    }); 
+  // console.log("xarabam men");
   boxs.innerHTML = kod;
 }
 
 function go(arg) {
   main.innerHTML = `<h1 id="basliq"> All countries in ${arg} continent</h1>`;
+  const c = data.filter(item => item.region === arg );
+  showBoxs(c);
+  console.log(c);
+}
+
+function OpenBox(alpha3) {
+  content.innerHTML = " ";
+  flags.innerHTML= " ";
+  addBtn.innerHTML = " ";
+  const heh = data.filter(item => item.alpha3Code == alpha3).map(item => flags.innerHTML = `
+    <div class="rand-card">
+      <div class="card-img">
+          <img src="${item.flags.png}" alt="">
+      </div>
+      <div class="card-text">
+          <h1>${item.name}</h1>
+          <p>Capital: ${item.capital}</p><br>
+          <p>Region: ${item.region}</p><br>
+          <p>Area: ${item.area} km<sup>2<sup></p><br>
+          <p>Population: ${item.population}</p>
+      </div>
+      </div>
+      <div>
+        <button class="kecid" onclick="goBack()">⇦ Go Back</button>
+      </div>
+  `);
+  flags.innerHTML = heh;
+}
+
+function goBack() {
   showBoxs();
 }
